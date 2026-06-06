@@ -391,27 +391,91 @@ section{position:relative}
 .trust-chip svg{width:16px;height:16px;color:var(--blue)}
 
 /* ============ HOW IT WORKS ============ */
-.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.mock{
-  background:radial-gradient(500px 320px at 20% 0%,rgba(59,91,246,.45),transparent 60%),linear-gradient(160deg,#15205a,#0a1138);
-  border-radius:26px;padding:30px;position:relative;overflow:hidden;box-shadow:0 30px 70px -30px rgba(20,40,120,.55);
-}
-.mock .mlogo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center;margin-bottom:22px}
-.mock .mlogo svg{width:20px;height:20px;color:#fff}
-.mfield{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 16px;margin-bottom:12px}
-.mfield .mlbl{font-size:11px;color:#8e9bc4;font-family:'Outfit',sans-serif;font-weight:600}
-.mfield .mval{font-size:15px;color:#fff;margin-top:4px;font-family:'Outfit',sans-serif;font-weight:600}
-.mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mock .scan-line{position:absolute;left:0;right:0;height:90px;background:linear-gradient(180deg,transparent,rgba(107,132,248,.18),transparent);animation:scan 3.2s linear infinite;pointer-events:none}
-@keyframes scan{0%{top:-90px}100%{top:100%}}
-.mock .mplane{position:absolute;right:24px;bottom:22px;width:46px;height:46px;color:rgba(174,188,255,.6)}
-.steps{display:flex;flex-direction:column;gap:14px}
-.step{display:flex;gap:18px;padding:22px;border-radius:18px;border:1px solid #E7EBFA;background:#fff;transition:.25s;cursor:pointer}
-.step .sn{font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;color:var(--gray);min-width:36px;transition:color .25s}
-.step h4{font-family:'Outfit',sans-serif;font-weight:700;font-size:18px}
-.step p{color:var(--gray);font-size:14px;line-height:1.5;margin-top:6px}
-.step.active,.step:hover{background:linear-gradient(160deg,rgba(59,91,246,.07),rgba(59,91,246,.02));border-color:rgba(59,91,246,.35);transform:translateX(4px)}
-.step.active .sn{color:var(--blue)}
+.how-section{background:var(--bg-dark);position:relative;overflow:hidden}
+.how-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.how-mock-col{position:sticky;top:110px}
+.hw-mock{background:linear-gradient(160deg,#111d52,#080f30);border-radius:28px;overflow:hidden;box-shadow:0 50px 100px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.1);position:relative;min-height:480px}
+.hw-mock-header{padding:20px 22px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px}
+.hw-mock-logo{width:28px;height:28px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hw-mock-logo svg{width:15px;height:15px}
+.hw-mock-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;color:#fff}
+.hw-mock-status{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--green);font-weight:600}
+.hw-mock-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:hw-pulse 2s ease-in-out infinite}
+@keyframes hw-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+/* screens */
+.hw-screen{position:absolute;left:0;right:0;top:66px;bottom:0;padding:22px;opacity:0;transform:translateY(18px) scale(.98);transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.hw-screen.active{opacity:1;transform:none;pointer-events:auto}
+/* s1 search */
+.hw-s1-field{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:13px 16px;margin-bottom:9px}
+.hw-s1-lbl{font-size:10.5px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.hw-s1-val{color:#fff;font-size:16px;font-weight:700;font-family:'Outfit',sans-serif}
+.hw-s1-ai{display:flex;align-items:center;gap:9px;background:rgba(59,91,246,.12);border:1px solid rgba(59,91,246,.25);border-radius:12px;padding:11px 15px;margin:14px 0 12px}
+.hw-s1-ai-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:hw-pulse 1s ease-in-out infinite;flex-shrink:0}
+.hw-s1-results{display:flex;flex-direction:column;gap:7px}
+.hw-s1-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:10px 14px;font-size:13px}
+.hw-s1-row.best{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.25)}
+.hw-s1-airline{color:#c5cff0}
+.hw-s1-row.best .hw-s1-airline{color:#fff;font-weight:600}
+.hw-s1-fare{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:var(--gray)}
+.hw-s1-row.best .hw-s1-fare{color:var(--green)}
+.hw-s1-badge{font-size:10px;font-weight:700;background:var(--green);color:#fff;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+/* s2 graph */
+.hw-s2-route{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.hw-s2-city{font-family:'Outfit',sans-serif;font-weight:900;font-size:22px;color:#fff}
+.hw-s2-graph{height:130px;background:rgba(255,255,255,.03);border-radius:14px;border:1px solid rgba(255,255,255,.07);overflow:hidden;margin-bottom:16px;position:relative}
+.hw-s2-graph svg{width:100%;height:100%;position:absolute;inset:0}
+.hw-s2-price-row{display:flex;align-items:flex-end;gap:12px;margin-bottom:14px}
+.hw-s2-current{font-family:'Outfit',sans-serif;font-weight:900;font-size:44px;color:#fff;line-height:1}
+.hw-s2-meta{display:flex;flex-direction:column;gap:5px;padding-bottom:4px}
+.hw-s2-save{background:rgba(34,197,94,.14);color:var(--green);font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;width:fit-content}
+.hw-s2-was{font-size:16px;color:var(--gray);text-decoration:line-through}
+.hw-s2-urgency{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+/* s3 alert */
+.hw-s3-notif{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;margin-bottom:12px}
+.hw-s3-notif-top{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.hw-s3-icon{width:30px;height:30px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hw-s3-icon svg{width:15px;height:15px}
+.hw-s3-notif-time{font-size:11px;color:var(--gray);margin-left:auto}
+.hw-s3-notif-title{font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:14.5px;margin-bottom:5px}
+.hw-s3-notif-body{font-size:12.5px;color:var(--gray);line-height:1.5}
+.hw-s3-deal-row{background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(34,197,94,.03));border:1px solid rgba(34,197,94,.25);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.hw-s3-deal-lbl{font-size:11.5px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.hw-s3-deal-price{font-family:'Outfit',sans-serif;font-weight:900;font-size:34px;color:#fff;line-height:1}
+.hw-s3-actions{display:flex;gap:8px}
+.hw-s3-btn-primary{flex:1;background:var(--blue);border-radius:12px;padding:13px;text-align:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;color:#fff}
+.hw-s3-btn-sec{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px;text-align:center;font-size:14px;color:var(--gray)}
+/* s4 confirmed */
+.hw-s4-tick{width:60px;height:60px;border-radius:50%;background:rgba(34,197,94,.12);border:2px solid rgba(34,197,94,.35);display:flex;align-items:center;justify-content:center;margin:10px auto 18px}
+.hw-s4-tick svg{width:28px;height:28px;color:var(--green)}
+.hw-s4-pass{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-bottom:12px}
+.hw-s4-airports{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.hw-s4-apt-code{font-family:'Outfit',sans-serif;font-weight:900;font-size:30px;color:#fff}
+.hw-s4-apt-name{font-size:10.5px;color:var(--gray)}
+.hw-s4-route-line{display:flex;flex:1;align-items:center;gap:6px;padding:0 12px}
+.hw-s4-dashes{flex:1;height:1px;background:repeating-linear-gradient(to right,rgba(255,255,255,.2) 0,rgba(255,255,255,.2) 4px,transparent 4px,transparent 8px)}
+.hw-s4-plane{color:var(--blue)}
+.hw-s4-plane svg{width:18px;height:18px}
+.hw-s4-meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--gray);padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+.hw-s4-save{background:rgba(59,91,246,.12);border:1px solid rgba(59,91,246,.25);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+/* step cards */
+.how-steps-col{display:flex;flex-direction:column;gap:0;padding-top:10px}
+.hw-step{padding:42px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:opacity .4s}
+.hw-step:last-child{border-bottom:none}
+.hw-step:not(.active){opacity:.35}
+.hw-step-top{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.hw-step-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:12.5px;color:var(--blue);letter-spacing:.1em;background:rgba(59,91,246,.1);border:1px solid rgba(59,91,246,.2);padding:6px 14px;border-radius:999px;transition:.3s;white-space:nowrap}
+.hw-step.active .hw-step-num{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 0 20px rgba(59,91,246,.5)}
+.hw-step-line{flex:1;height:1px;background:linear-gradient(to right,rgba(255,255,255,.12),transparent)}
+.hw-step h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;color:#fff;margin-bottom:12px;line-height:1.2;transition:.3s}
+.hw-step.active h3{background:linear-gradient(100deg,#fff 60%,var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hw-step p{color:var(--gray);font-size:15px;line-height:1.72;margin-bottom:20px}
+.hw-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hw-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:6px 14px;font-size:12.5px;color:#b0bfe0;font-weight:500;display:flex;align-items:center;gap:6px}
+.hw-chip svg{width:12px;height:12px;color:var(--blue);flex-shrink:0}
+.hw-progress{height:2px;background:rgba(255,255,255,.07);border-radius:999px;margin-top:24px;overflow:hidden;opacity:0;transition:opacity .3s}
+.hw-step.active .hw-progress{opacity:1}
+.hw-progress-fill{height:100%;width:0;background:linear-gradient(to right,var(--blue),var(--blue-light));border-radius:999px;transition:width 4s linear}
+.hw-step.active .hw-progress-fill{width:100%}
 
 /* ============ TESTIMONIALS ============ */
 .test-top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:50px;flex-wrap:wrap}
@@ -486,6 +550,8 @@ section{position:relative}
   .media-logos{gap:28px}
   .agg-row{padding:20px 28px}
   .prem-blur-row{grid-template-columns:1fr 1fr}
+  .how-inner{grid-template-columns:1fr 1fr;gap:50px}
+  .how-mock-col{position:sticky;top:100px}
   /* widgets */
   .srch-head{flex-direction:column;align-items:flex-start}
   .tpw-dest-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,200px)}
@@ -550,6 +616,11 @@ section{position:relative}
   .dest-saopaulo{grid-column:1;grid-row:4}
   .dest-paris{grid-column:1;grid-row:5}
   .deal-grid{grid-template-columns:1fr;padding:16px}
+  /* how it works mobile */
+  .how-inner{grid-template-columns:1fr;gap:40px}
+  .how-mock-col{position:relative;top:0}
+  .hw-mock{min-height:360px}
+  .hw-step:not(.active){opacity:.6}
   /* media bar */
   .media-bar-inner{flex-direction:column;gap:14px;text-align:center}
   .media-as-label{margin-right:0}
@@ -1209,33 +1280,170 @@ section{position:relative}
 </section>
 
 <!-- ============ HOW IT WORKS ============ -->
-<section class="sec sec-light" id="how">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="pill pill-light">How It Works</span>
-      <h2>Fly Smarter In Four<br/>Simple Steps</h2>
-      <p>From planning to booking to real-time updates, TravelyDeal makes every part of your journey effortless.</p>
+<section class="sec how-section" id="how">
+  <div class="dotgrid" style="-webkit-mask-image:radial-gradient(ellipse 70% 60% at 15% 50%,#000,transparent);mask-image:radial-gradient(ellipse 70% 60% at 15% 50%,#000,transparent);opacity:.35"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head reveal" style="margin-bottom:72px">
+      <span class="pill">How It Works</span>
+      <h2 style="color:#fff">Fly Smarter In Four<br/>Simple Steps</h2>
+      <p style="color:var(--gray)">From planning to booking to real-time updates, TravelyDeal makes every part of your journey effortless.</p>
     </div>
-    <div class="how-grid">
-      <div class="mock reveal">
-        <div class="scan-line"></div>
-        <div class="mlogo"><svg viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1L15 22v-1.5L13 19v-5.5L21 16Z" fill="#fff"/></svg></div>
-        <div class="mfield"><div class="mlbl">From</div><div class="mval">Lisbon (LIS)</div></div>
-        <div class="mfield"><div class="mlbl">To</div><div class="mval">New York (JFK)</div></div>
-        <div class="mrow">
-          <div class="mfield"><div class="mlbl">Date</div><div class="mval">Jun 24 – Jul 2</div></div>
-          <div class="mfield"><div class="mlbl">Passengers</div><div class="mval">1 Adult</div></div>
+    <div class="how-inner">
+
+      <!-- LEFT: Sticky mock -->
+      <div class="how-mock-col reveal">
+        <div class="hw-mock">
+          <div class="hw-mock-header">
+            <div class="hw-mock-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1L15 22v-1.5L13 19v-5.5L21 16Z" fill="#fff"/></svg></div>
+            <span class="hw-mock-title">TravelyDeal</span>
+            <div class="hw-mock-status"><span class="hw-mock-dot"></span>Live</div>
+          </div>
+
+          <!-- Screen 1: AI Search -->
+          <div class="hw-screen active" id="hw-s1">
+            <div class="hw-s1-field"><div class="hw-s1-lbl">From</div><div class="hw-s1-val">Lisbon (LIS)</div></div>
+            <div class="hw-s1-field"><div class="hw-s1-lbl">To</div><div class="hw-s1-val">New York (JFK)</div></div>
+            <div style="display:flex;gap:9px">
+              <div class="hw-s1-field" style="flex:1"><div class="hw-s1-lbl">Date</div><div class="hw-s1-val" style="font-size:14px">Jun 24 – Jul 2</div></div>
+              <div class="hw-s1-field" style="flex:1"><div class="hw-s1-lbl">Pax</div><div class="hw-s1-val" style="font-size:14px">1 Adult</div></div>
+            </div>
+            <div class="hw-s1-ai">
+              <span class="hw-s1-ai-dot"></span>
+              <span style="font-size:13px;color:#a0b4ff;font-weight:500">AI scanning 300+ airlines...</span>
+              <span style="font-size:12px;color:var(--blue);font-weight:800;margin-left:auto">78%</span>
+            </div>
+            <div class="hw-s1-results">
+              <div class="hw-s1-row"><span class="hw-s1-airline">TAP Air Portugal</span><span class="hw-s1-fare">€420</span></div>
+              <div class="hw-s1-row best"><span class="hw-s1-airline">Iberia + Delta</span><span class="hw-s1-fare">€189</span><span class="hw-s1-badge">Best</span></div>
+              <div class="hw-s1-row"><span class="hw-s1-airline">British Airways</span><span class="hw-s1-fare">€367</span></div>
+            </div>
+          </div>
+
+          <!-- Screen 2: Price Graph -->
+          <div class="hw-screen" id="hw-s2">
+            <div class="hw-s2-route">
+              <span class="hw-s2-city">LIS</span>
+              <svg viewBox="0 0 24 24" fill="none" style="width:22px;color:var(--blue)"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1L15 22v-1.5L13 19v-5.5L21 16Z" fill="currentColor"/></svg>
+              <span class="hw-s2-city">JFK</span>
+            </div>
+            <div class="hw-s2-graph">
+              <svg viewBox="0 0 300 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs><linearGradient id="gGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B5BF6" stop-opacity=".2"/><stop offset="100%" stop-color="#3B5BF6" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0 18 C30 17,50 14,70 22 C90 30,110 20,130 32 C150 44,170 40,190 54 C210 68,230 62,260 74 C280 82,292 80,300 84" fill="none" stroke="rgba(107,132,248,.25)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M0 18 C30 17,50 14,70 22 C90 30,110 20,130 32 C150 44,170 40,190 54 C210 68,230 62,260 74 C280 82,292 80,300 84 L300 100 L0 100 Z" fill="url(#gGrad)"/>
+                <path d="M190 54 C210 68,230 62,260 74 C280 82,292 80,300 84" fill="none" stroke="#3B5BF6" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="300" cy="84" r="4" fill="#3B5BF6"/>
+                <line x1="0" y1="79" x2="300" y2="79" stroke="#22C55E" stroke-width="1" stroke-dasharray="5 4" opacity=".6"/>
+                <text x="5" y="74" fill="#22C55E" font-size="8" font-family="sans-serif" opacity=".9">Target €189</text>
+              </svg>
+            </div>
+            <div class="hw-s2-price-row">
+              <div class="hw-s2-current">€189</div>
+              <div class="hw-s2-meta">
+                <span class="hw-s2-save">-55% vs peak</span>
+                <span class="hw-s2-was">was €420</span>
+              </div>
+            </div>
+            <div class="hw-s2-urgency">
+              <span style="font-size:13px;color:var(--green);font-weight:600">Deal window closing</span>
+              <span style="font-family:'Outfit',sans-serif;font-weight:800;font-size:18px;color:#fff">4h 12m left</span>
+            </div>
+          </div>
+
+          <!-- Screen 3: Alert -->
+          <div class="hw-screen" id="hw-s3">
+            <div class="hw-s3-notif">
+              <div class="hw-s3-notif-top">
+                <div class="hw-s3-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1L15 22v-1.5L13 19v-5.5L21 16Z" fill="#fff"/></svg></div>
+                <div><div style="font-size:12px;color:#fff;font-weight:600">TravelyDeal</div><div style="font-size:11px;color:var(--gray)">Flight Deal Alert</div></div>
+                <span class="hw-s3-notif-time">now</span>
+              </div>
+              <div class="hw-s3-notif-title">Error Fare — LIS → JFK</div>
+              <div class="hw-s3-notif-body">Iberia + Delta at €189 — 55% below market average. Only 4 seats remaining at this price.</div>
+            </div>
+            <div class="hw-s3-deal-row">
+              <div><div class="hw-s3-deal-lbl">Deal Price</div><div class="hw-s3-deal-price">€189</div></div>
+              <div style="text-align:right"><div style="font-size:12px;color:var(--gray);margin-bottom:4px">You save</div><div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:26px;color:var(--green)">€231</div></div>
+            </div>
+            <div class="hw-s3-actions">
+              <div class="hw-s3-btn-primary">Book Now</div>
+              <div class="hw-s3-btn-sec">Save Deal</div>
+            </div>
+          </div>
+
+          <!-- Screen 4: Confirmed -->
+          <div class="hw-screen" id="hw-s4">
+            <div class="hw-s4-tick"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;color:#fff;text-align:center;margin-bottom:4px">Booking Confirmed!</div>
+            <div style="color:var(--gray);font-size:13px;text-align:center;margin-bottom:20px">Your deal has been locked in.</div>
+            <div class="hw-s4-pass">
+              <div class="hw-s4-airports">
+                <div><div class="hw-s4-apt-code">LIS</div><div class="hw-s4-apt-name">Lisbon</div></div>
+                <div class="hw-s4-route-line">
+                  <div class="hw-s4-dashes"></div>
+                  <div class="hw-s4-plane"><svg viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1L15 22v-1.5L13 19v-5.5L21 16Z" fill="currentColor"/></svg></div>
+                </div>
+                <div style="text-align:right"><div class="hw-s4-apt-code">JFK</div><div class="hw-s4-apt-name">New York</div></div>
+              </div>
+              <div class="hw-s4-meta"><span>Jun 24 · 10:45</span><span>Economy · IB3164</span><span>1 Adult</span></div>
+            </div>
+            <div class="hw-s4-save">
+              <span style="font-size:12px;color:var(--blue-light);font-weight:600">Total saved vs. avg. price</span>
+              <span style="font-family:'Outfit',sans-serif;font-weight:800;font-size:22px;color:#fff">€231</span>
+            </div>
+          </div>
+
         </div>
-        <a href="#" class="btn btn-blue" style="width:100%;justify-content:center;margin-top:6px">Start Now
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <svg class="mplane" viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1L15 22v-1.5L13 19v-5.5L21 16Z" fill="currentColor"/></svg>
       </div>
-      <div class="steps">
-        <div class="step active reveal"><div class="sn">01</div><div><h4>AI Finds The Best Deals Instantly</h4><p>Tell us where and when you want to fly — our AI uncovers the smartest routes and lowest fares from 300+ airlines.</p></div></div>
-        <div class="step reveal" style="transition-delay:.06s"><div class="sn">02</div><div><h4>Set Your Destinations &amp; Budget</h4><p>Pin your dream destinations and target price. We'll keep watch around the clock.</p></div></div>
-        <div class="step reveal" style="transition-delay:.12s"><div class="sn">03</div><div><h4>Get Instant Alerts</h4><p>The moment a fare drops or an error fare appears, you get a notification — by email or app.</p></div></div>
-        <div class="step reveal" style="transition-delay:.18s"><div class="sn">04</div><div><h4>Book &amp; Save</h4><p>Lock in your deal with secure one-click checkout and start packing.</p></div></div>
+
+      <!-- RIGHT: Steps -->
+      <div class="how-steps-col">
+        <div class="hw-step active" data-step="1">
+          <div class="hw-step-top"><span class="hw-step-num">01</span><div class="hw-step-line"></div></div>
+          <h3>AI Finds The Best Deals Instantly</h3>
+          <p>Tell us where and when you want to fly — our AI scans 300+ airlines, compares millions of fare combinations, and surfaces error fares and flash sales before they disappear.</p>
+          <div class="hw-chips">
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>300+ airlines</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z"/></svg>Real-time scanning</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Error fare detection</span>
+          </div>
+          <div class="hw-progress"><div class="hw-progress-fill"></div></div>
+        </div>
+        <div class="hw-step" data-step="2">
+          <div class="hw-step-top"><span class="hw-step-num">02</span><div class="hw-step-line"></div></div>
+          <h3>Set Your Target Price & Watch</h3>
+          <p>Pin your dream destinations, set a maximum price, and our AI tracks historical lows so you know exactly when the market dips. Price graph included — no guesswork.</p>
+          <div class="hw-chips">
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 4"/></svg>Price history</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Flexible dates</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AI prediction</span>
+          </div>
+          <div class="hw-progress"><div class="hw-progress-fill"></div></div>
+        </div>
+        <div class="hw-step" data-step="3">
+          <div class="hw-step-top"><span class="hw-step-num">03</span><div class="hw-step-line"></div></div>
+          <h3>Get Instant Alerts Before Anyone Else</h3>
+          <p>The moment a fare drops below your target, you're notified first — push + email. Pro members get a 20-minute head start over free users. Every minute counts on error fares.</p>
+          <div class="hw-chips">
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Push + email</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>20-min head start</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z"/></svg>Error fares only</span>
+          </div>
+          <div class="hw-progress"><div class="hw-progress-fill"></div></div>
+        </div>
+        <div class="hw-step" data-step="4">
+          <div class="hw-step-top"><span class="hw-step-num">04</span><div class="hw-step-line"></div></div>
+          <h3>Book, Save & Start Packing</h3>
+          <p>One click to the airline or partner — book in under 2 minutes and lock in your saving. Our members save an average of €183 per trip. That's your next holiday, essentially free.</p>
+          <div class="hw-chips">
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/></svg>Stripe-secured</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>EU refund protected</span>
+            <span class="hw-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Avg. save €183</span>
+          </div>
+          <div class="hw-progress"><div class="hw-progress-fill"></div></div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1481,9 +1689,21 @@ function setPlan(plan){
   if(foot)foot.textContent=onetime?'One payment. Lifetime access. No renewals ever.':'No contracts. Cancel anytime.';
 }
 toggle.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>setPlan(o.dataset.plan)));
-document.querySelectorAll('.step').forEach(s=>s.addEventListener('mouseenter',()=>{
-  document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));s.classList.add('active');
-}));
+/* --- How It Works — scroll-driven step switcher --- */
+const hwSteps=document.querySelectorAll('.hw-step');
+const hwScreens=document.querySelectorAll('.hw-screen');
+function hwActivate(n){
+  hwSteps.forEach(s=>{
+    const on=s.dataset.step===String(n);
+    s.classList.toggle('active',on);
+    if(on){const bar=s.querySelector('.hw-progress-fill');if(bar){bar.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width='100%'));}}
+  });
+  hwScreens.forEach(s=>s.classList.toggle('active',s.id==='hw-s'+n));
+}
+const hwObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)hwActivate(e.target.dataset.step);});
+},{threshold:0.55,rootMargin:'-15% 0px -15% 0px'});
+hwSteps.forEach(s=>hwObs.observe(s));
 
 /* --- FAQ accordion --- */
 function toggleFaq(q){
