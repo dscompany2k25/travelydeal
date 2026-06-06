@@ -348,7 +348,7 @@ section{position:relative}
 .toggle .opt{position:relative;z-index:2;font-family:'Outfit',sans-serif;font-weight:600;font-size:14.5px;padding:10px 24px;border-radius:999px;color:var(--gray);transition:color .25s;user-select:none}
 .toggle .opt.active{color:#fff}
 .toggle .slider{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);background:var(--blue);border-radius:999px;transition:transform .3s cubic-bezier(.6,.2,.2,1);z-index:1;box-shadow:var(--shadow-blue)}
-.toggle.annual .slider{transform:translateX(100%)}
+.toggle.onetime .slider{transform:translateX(100%)}
 .save-badge{background:rgba(34,197,94,.12);color:#16a34a;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px}
 
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
@@ -1142,9 +1142,9 @@ section{position:relative}
       <div class="toggle" id="toggle">
         <div class="slider"></div>
         <span class="opt active" data-plan="monthly">Monthly</span>
-        <span class="opt" data-plan="annual">Annual</span>
+        <span class="opt" data-plan="onetime">One-Time</span>
       </div>
-      <span class="save-badge">Save 20%</span>
+      <span class="save-badge" id="save-badge">Save 20%</span>
     </div>
     <div class="price-grid">
       <!-- FREE -->
@@ -1167,8 +1167,8 @@ section{position:relative}
         <span class="pop-badge">Most Popular</span>
         <h3 class="pname">Pro</h3>
         <p class="pdesc">For frequent travelers.</p>
-        <div class="pprice"><span data-monthly="9" data-annual="7">€9</span><span class="per">/month</span></div>
-        <div class="pnote" data-note-annual="Billed €84/year — that's €7/mo." data-note-monthly="Billed monthly. Switch anytime.">Billed monthly. Switch anytime.</div>
+        <div class="pprice"><span data-monthly="9" data-onetime="79">€9</span><span class="per">/month</span></div>
+        <div class="pnote" data-note-monthly="Billed monthly. Cancel anytime." data-note-onetime="Lifetime access. Pay once, use forever.">Billed monthly. Cancel anytime.</div>
         <ul class="plist">
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited deal alerts</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>20 destination slots</li>
@@ -1177,15 +1177,15 @@ section{position:relative}
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fare prediction AI</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority access to flash deals</li>
         </ul>
-        <a href="#" class="btn btn-blue"><span data-cta-monthly="Start Pro — €9/mo" data-cta-annual="Start Pro — €7/mo">Start Pro — €9/mo</span></a>
+        <a href="#" class="btn btn-blue"><span data-cta-monthly="Start Pro — €9/mo" data-cta-onetime="Get Pro Lifetime — €79">Start Pro — €9/mo</span></a>
       </article>
       <!-- PREMIUM -->
       <article class="pcard reveal" style="transition-delay:.16s">
         <span class="ptag tag-best">Best Value</span>
         <h3 class="pname">Premium</h3>
         <p class="pdesc">For power travelers and families.</p>
-        <div class="pprice"><span data-monthly="19" data-annual="15">€19</span><span class="per">/month</span></div>
-        <div class="pnote" data-note-annual="Billed €180/year — that's €15/mo." data-note-monthly="Billed monthly. Switch anytime.">Billed monthly. Switch anytime.</div>
+        <div class="pprice"><span data-monthly="19" data-onetime="149">€19</span><span class="per">/month</span></div>
+        <div class="pnote" data-note-monthly="Billed monthly. Cancel anytime." data-note-onetime="Lifetime access. Pay once, use forever.">Billed monthly. Cancel anytime.</div>
         <ul class="plist">
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in Pro</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited destination slots</li>
@@ -1194,7 +1194,7 @@ section{position:relative}
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Family sharing (up to 5)</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dedicated deal curator</li>
         </ul>
-        <a href="#" class="btn btn-dark"><span data-cta-monthly="Go Premium — €19/mo" data-cta-annual="Go Premium — €15/mo">Go Premium — €19/mo</span></a>
+        <a href="#" class="btn btn-dark"><span data-cta-monthly="Go Premium — €19/mo" data-cta-onetime="Get Premium Lifetime — €149">Go Premium — €19/mo</span></a>
       </article>
     </div>
     <div class="pricing-foot reveal">
@@ -1460,12 +1460,25 @@ const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.t
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const toggle=document.getElementById('toggle');
 function setPlan(plan){
-  const annual=plan==='annual';
-  toggle.classList.toggle('annual',annual);
+  const onetime=plan==='onetime';
+  toggle.classList.toggle('onetime',onetime);
   toggle.querySelectorAll('.opt').forEach(o=>o.classList.toggle('active',o.dataset.plan===plan));
-  document.querySelectorAll('.pprice [data-monthly]').forEach(s=>{s.textContent='€'+(annual?s.dataset.annual:s.dataset.monthly);});
-  document.querySelectorAll('.pnote[data-note-monthly]').forEach(n=>{n.textContent=annual?n.dataset.noteAnnual:n.dataset.noteMonthly;});
-  document.querySelectorAll('[data-cta-monthly]').forEach(c=>{c.textContent=annual?c.dataset.ctaAnnual:c.dataset.ctaMonthly;});
+  document.querySelectorAll('.pprice [data-monthly]').forEach(s=>{
+    s.textContent='€'+(onetime?s.dataset.onetime:s.dataset.monthly);
+  });
+  document.querySelectorAll('.pprice .per').forEach(p=>{
+    p.textContent=onetime?' once':'/month';
+  });
+  document.querySelectorAll('.pnote[data-note-monthly]').forEach(n=>{
+    n.textContent=onetime?(n.dataset.noteOnetime||''):n.dataset.noteMonthly;
+  });
+  document.querySelectorAll('[data-cta-monthly]').forEach(c=>{
+    c.textContent=onetime?(c.dataset.ctaOnetime||c.dataset.ctaMonthly):c.dataset.ctaMonthly;
+  });
+  const badge=document.getElementById('save-badge');
+  if(badge)badge.textContent=onetime?'Lifetime Deal':'Save 20%';
+  const foot=document.querySelector('.pricing-foot .nc');
+  if(foot)foot.textContent=onetime?'One payment. Lifetime access. No renewals ever.':'No contracts. Cancel anytime.';
 }
 toggle.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>setPlan(o.dataset.plan)));
 document.querySelectorAll('.step').forEach(s=>s.addEventListener('mouseenter',()=>{
