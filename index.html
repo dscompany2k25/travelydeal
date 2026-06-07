@@ -1248,7 +1248,7 @@ section{position:relative}
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fare prediction AI</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority access to flash deals</li>
         </ul>
-        <a href="#" class="btn btn-blue"><span data-cta-monthly="Start Pro — €9/mo" data-cta-onetime="Get Pro Lifetime — €79">Start Pro — €9/mo</span></a>
+        <a href="javascript:void(0)" onclick="startCheckout('pro',this)" class="btn btn-blue"><span data-cta-monthly="Start Pro — €9/mo" data-cta-onetime="Get Pro Lifetime — €79">Start Pro — €9/mo</span></a>
       </article>
       <!-- PREMIUM -->
       <article class="pcard reveal" style="transition-delay:.16s">
@@ -1265,7 +1265,7 @@ section{position:relative}
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Family sharing (up to 5)</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dedicated deal curator</li>
         </ul>
-        <a href="#" class="btn btn-dark"><span data-cta-monthly="Go Premium — €19/mo" data-cta-onetime="Get Premium Lifetime — €149">Go Premium — €19/mo</span></a>
+        <a href="javascript:void(0)" onclick="startCheckout('premium',this)" class="btn btn-dark"><span data-cta-monthly="Go Premium — €19/mo" data-cta-onetime="Get Premium Lifetime — €149">Go Premium — €19/mo</span></a>
       </article>
     </div>
     <div class="pricing-foot reveal">
@@ -1754,6 +1754,32 @@ const cuObs=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){countUp(e.target);cuObs.unobserve(e.target);}});
 },{threshold:.5});
 document.querySelectorAll('[data-target]').forEach(el=>cuObs.observe(el));
+
+/* --- Stripe Checkout --- */
+async function startCheckout(plan, btn) {
+  const billing = toggle.classList.contains('onetime') ? 'onetime' : 'monthly';
+  const span = btn.querySelector('span') || btn;
+  const origText = span.textContent;
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '.65';
+  span.textContent = 'Redirecting…';
+  try {
+    const r = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan, billing })
+    });
+    const d = await r.json();
+    if (d.url) { window.location.href = d.url; return; }
+    throw new Error(d.error || 'No URL returned');
+  } catch (err) {
+    console.error('Checkout error:', err);
+    span.textContent = origText;
+    btn.style.pointerEvents = '';
+    btn.style.opacity = '';
+    alert('Something went wrong. Please try again or contact admin@travelydeal.com');
+  }
+}
 
 /* --- Highlight active nav link on scroll --- */
 const sections=document.querySelectorAll('section[id],header[id]');
